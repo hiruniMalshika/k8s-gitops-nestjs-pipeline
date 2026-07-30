@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nestjs-app-service
+spec:
+  type: ClusterIP
+  selector:
+    app: nestjs-app
+  ports:
+  - port: 80
+    targetPort: 3000
+    protocol: TCP
