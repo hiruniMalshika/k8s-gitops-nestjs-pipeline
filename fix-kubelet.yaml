@@ -1,0 +1,6 @@
+kubelet:
+  enabled: true
+  namespace: kube-system
+  serviceMonitor:
+    https: true
+    insecureSkipVerify: true
