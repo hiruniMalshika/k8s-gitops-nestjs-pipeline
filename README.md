@@ -43,28 +43,3 @@ An enterprise-grade **GitOps Continuous Delivery (CD)** pipeline demonstrating p
 ├── Dockerfile                    # Multi-stage Docker build config
 └── README.md
 
-🚀 Getting Started
-Prerequisites
-Kubernetes cluster (Minikube / Kind / EKS / AKS)
-
-Argo Rollouts Controller installed (kubectl create namespace argo-rollouts)
-
-Prometheus Monitoring Stack running in cluster
-
-Steps
-Clone the repository:
-
-Bash
-git clone [https://github.com/hirumalshika/k8s-gitops-nestjs-pipeline.git](https://github.com/hirumalshika/k8s-gitops-nestjs-pipeline.git)
-cd k8s-gitops-nestjs-pipeline
-Apply AnalysisTemplate & Service:
-
-Bash
-kubectl apply -f k8s/analysis-template.yaml
-kubectl apply -f k8s/service.yaml
-Deploy Rollout:
-
-Bash
-kubectl apply -f k8s/rollout.yaml
-👩‍💻 Author
-Hiruni Malshika - GitHub
