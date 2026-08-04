@@ -76,7 +76,7 @@ The progressive delivery workflow follows a structured 4-phase lifecycle to guar
    └───────────────────────────────┘     └──────────────────────────────┘
 ```
 
-###Detailed Execution Steps:
+### Detailed Execution Steps:
 1. Build & Release Image: A new application version is built and pushed with a semantic version tag:
    ```
 		docker build -t hirumalshika/k8s-gitops-nestjs-pipeline:v2.0.0 .
@@ -97,14 +97,14 @@ The progressive delivery workflow follows a structured 4-phase lifecycle to guar
      
 5. Automated Safety Net: If Prometheus records HTTP error spikes (>5%), the AnalysisRun fails, triggering an instant, zero-downtime rollback back to v1.0.0.
 
-📊 Live Rollout Status
-Monitoring rollout progression via Argo Rollouts CLI:
+### 📊 Live Rollout Status
+## Monitoring rollout progression via Argo Rollouts CLI:
 
 Bash
 ```
 kubectl argo rollouts get rollout nestjs-app-rollout --watch
 ```
-Successful Deployment Preview:
+## Successful Deployment Preview:
 ```
 Plaintext
 Name:            nestjs-app-rollout
@@ -141,17 +141,17 @@ Argo Rollouts Controller installed (kubectl create namespace argo-rollouts)
 Prometheus Monitoring Stack running in cluster
 
 ## Steps
-Clone the repository:
+# Clone the repository:
 ```
 git clone [https://github.com/hirumalshika/k8s-gitops-nestjs-pipeline.git](https://github.com/hirumalshika/k8s-gitops-nestjs-pipeline.git)
 cd k8s-gitops-nestjs-pipeline
 ```
-Apply AnalysisTemplate & Service:
+# Apply AnalysisTemplate & Service:
 ```
 kubectl apply -f k8s/analysis-template.yaml
 kubectl apply -f k8s/service.yaml
 ```
-Deploy Rollout:
+# Deploy Rollout:
 
 ```
 kubectl apply -f k8s/rollout.yaml
