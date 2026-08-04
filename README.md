@@ -48,6 +48,7 @@ An enterprise-grade **GitOps Continuous Delivery (CD)** pipeline demonstrating p
 ###⚙️ Deployment Workflow
 
 The progressive delivery workflow follows a structured 4-phase lifecycle to guarantee zero downtime:
+```
 [ Developer Push ] ──► [ Docker Build & Push Tag v2.0.0 ]
                                    │
                                    ▼
@@ -73,6 +74,7 @@ The progressive delivery workflow follows a structured 4-phase lifecycle to guar
    │      Then 100% Promotion      │     │  Aborts rollout, terminates  │
    │  Gracefully scales down v1.0  │     │  v2 pods & reverts to stable │
    └───────────────────────────────┘     └──────────────────────────────┘
+```
 
 ###Detailed Execution Steps:
 1. Build & Release Image: A new application version is built and pushed with a semantic version tag:
