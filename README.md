@@ -130,32 +130,27 @@ NAME                                          KIND        STATUS        AGE   IN
    │  └──□ nestjs-app-rollout-57485846cf-r6x9c Pod         ✔ Running     10m   ready:1/1
    └──α nestjs-app-rollout-57485846cf-2.2     AnalysisRun ✔ Successful  11m   ✔ 10
 ```
-###🚀 Getting Started
-##Prerequisites
+### 🚀 Getting Started
+## Prerequisites
 Kubernetes cluster (Minikube / Kind / EKS / AKS)
 
 Argo Rollouts Controller installed (kubectl create namespace argo-rollouts)
 
 Prometheus Monitoring Stack running in cluster
 
-Steps
+## Steps
 Clone the repository:
-
-Bash
 ```
 git clone [https://github.com/hirumalshika/k8s-gitops-nestjs-pipeline.git](https://github.com/hirumalshika/k8s-gitops-nestjs-pipeline.git)
 cd k8s-gitops-nestjs-pipeline
 ```
 Apply AnalysisTemplate & Service:
-
-Bash
 ```
 kubectl apply -f k8s/analysis-template.yaml
 kubectl apply -f k8s/service.yaml
 ```
 Deploy Rollout:
 
-Bash
 ```
 kubectl apply -f k8s/rollout.yaml
 ```
