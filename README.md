@@ -1,52 +1,70 @@
-# NestJS GitOps Portfolio API
+# 🚀 Automated Canary Deployment with Argo Rollouts, Prometheus & NestJS
 
-A production-ready NestJS REST API designed for showcasing Kubernetes, CI/CD, and GitOps practices in portfolio projects.
+[![Kubernetes](https://img.shields.io/badge/Kubernetes-326CE5?style=for-the-badge&logo=kubernetes&logoColor=white)](https://kubernetes.io/)
+[![Argo Rollouts](https://img.shields.io/badge/Argo%20Rollouts-EF7B4D?style=for-the-badge&logo=argo&logoColor=white)](https://argoproj.github.io/rollouts/)
+[![Prometheus](https://img.shields.io/badge/Prometheus-E6522C?style=for-the-badge&logo=prometheus&logoColor=white)](https://prometheus.io/)
+[![NestJS](https://img.shields.io/badge/NestJS-E0234E?style=for-the-badge&logo=nestjs&logoColor=white)](https://nestjs.com/)
+[![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)](https://www.docker.com/)
 
-## Features
+An enterprise-grade **GitOps Continuous Delivery (CD)** pipeline demonstrating progressive delivery and zero-downtime canary deployments for a NestJS microservice on Kubernetes.
 
-- Health check endpoint at `/health`
-- CRUD sample API at `/api/v1/products`
-- Structured logging and environment-based configuration
-- Multi-stage Docker build for production deployment
+---
 
-## Local development
+## 📌 Architecture & Features
 
-```bash
-npm install
-npm run build
-npm test
-npm run start:dev
-```
+* **Canary Deployment Strategy:** Gradually shifts traffic from `v1` to `v2` (e.g., `20% ➔ 50% ➔ 100%`) using **Argo Rollouts** to prevent downtime.
+* **Automated Metric Analysis:** Real-time health validation powered by **Prometheus** via an `AnalysisTemplate`.
+* **Self-Healing & Auto-Rollback:** Automatically aborts failed releases and reverts to the last known stable revision if HTTP error thresholds are exceeded.
+* **GitOps Alignment:** Declarative Kubernetes manifests versioned and managed cleanly.
 
-## Run with Docker locally
+---
 
-```bash
-docker build -t nestjs-gitops-portfolio .
-```
+## 🛠️ Tech Stack
 
-If port 3000 is free on your machine, use:
+* **Application:** NestJS
+* **Containerization:** Docker & Docker Hub
+* **Orchestration:** Kubernetes
+* **Progressive Delivery:** Argo Rollouts Controller & CLI
+* **Monitoring & Alerting:** Prometheus Operator / Stack
 
-```bash
-docker run --rm -p 3000:3000 nestjs-gitops-portfolio
-```
+---
 
-If port 3000 is already in use, pick another host port:
+## 📁 Repository Structure
 
-```bash
-docker run --rm -p 3001:3000 nestjs-gitops-portfolio
-```
+```text
+.
+├── k8s/
+│   ├── rollout.yaml              # Argo Rollout spec (Canary steps & strategy)
+│   ├── analysis-template.yaml    # Prometheus metric validation rules
+│   ├── service.yaml              # Kubernetes Service configurations
+│   ├── deployment.yaml           # Standard deployment fallback
+│   └── ingress.yaml             # Ingress rules for external routing
+├── src/                          # NestJS Source Code
+├── Dockerfile                    # Multi-stage Docker build config
+└── README.md
 
-To find what is already listening on port 3000:
+🚀 Getting Started
+Prerequisites
+Kubernetes cluster (Minikube / Kind / EKS / AKS)
 
-```bash
-lsof -nP -iTCP:3000 -sTCP:LISTEN
-```
+Argo Rollouts Controller installed (kubectl create namespace argo-rollouts)
 
-Once running, test:
+Prometheus Monitoring Stack running in cluster
 
-```bash
-curl http://localhost:3000/health
-curl http://localhost:3000/api/v1/products
-```
+Steps
+Clone the repository:
 
-If you used the alternate host port, replace 3000 with 3001 in the curl commands.
+Bash
+git clone [https://github.com/hirumalshika/k8s-gitops-nestjs-pipeline.git](https://github.com/hirumalshika/k8s-gitops-nestjs-pipeline.git)
+cd k8s-gitops-nestjs-pipeline
+Apply AnalysisTemplate & Service:
+
+Bash
+kubectl apply -f k8s/analysis-template.yaml
+kubectl apply -f k8s/service.yaml
+Deploy Rollout:
+
+Bash
+kubectl apply -f k8s/rollout.yaml
+👩‍💻 Author
+Hiruni Malshika - GitHub

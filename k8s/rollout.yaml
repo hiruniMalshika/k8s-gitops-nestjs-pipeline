@@ -1,0 +1,32 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: nestjs-app-rollout
+  namespace: default
+spec:
+  replicas: 5
+  revisionHistoryLimit: 2
+  selector:
+    matchLabels:
+      app: nestjs-app
+  template:
+    metadata:
+      labels:
+        app: nestjs-app
+    spec:
+      containers:
+      - name: nestjs-app
+        # 👉 මෙතැනට v2.0.0 tag එක යොදන්න
+        image: hirumalshika/k8s-gitops-nestjs-pipeline:v2.0.0
+        ports:
+        - containerPort: 3000
+  strategy:
+    canary:
+      analysis:
+        templates:
+        - templateName: success-rate-analysis
+      steps:
+      - setWeight: 20
+      - pause: { duration: 30s }
+      - setWeight: 50
+      - pause: { duration: 1m }
