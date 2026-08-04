@@ -45,10 +45,10 @@ An enterprise-grade **GitOps Continuous Delivery (CD)** pipeline demonstrating p
 
 ```
 
-###⚙️ Deployment Workflow
+### ⚙️ Deployment Workflow
 
 The progressive delivery workflow follows a structured 4-phase lifecycle to guarantee zero downtime:
-```
+```text
 [ Developer Push ] ──► [ Docker Build & Push Tag v2.0.0 ]
                                    │
                                    ▼
